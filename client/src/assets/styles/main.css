@@ -91,7 +91,7 @@ input:focus {
   background-color: #003540;
   border-bottom: 1px solid #003540;
   position: fixed;
-  height: 6%;
+  height: 7%;
   width: 100%;
   display: flex;
 }
@@ -107,7 +107,7 @@ input:focus {
   text-align: center;
   align-self: center;
   font-size: 1.05em;
-  margin-top: 0.6em;
+  margin-top: 0em;
 }
 
 .header-cancel {
@@ -317,7 +317,7 @@ input:focus {
 .content2 {
   width: 100%;
   height: 86%;
-  top: 6%;
+  top: 7%;
   background: #efeff4;
   position: absolute;
   overflow-y: scroll;
@@ -690,7 +690,7 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
 .stepheader {
   color: #00697e;
   padding: 1em 0 .9em 0;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -699,8 +699,8 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
   display: flex;
   flex-direction: row;
   width: 100%;
-  font-size: 0.8em;
-  line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.75em;
 }
 
 .stepr {
