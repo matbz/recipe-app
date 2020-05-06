@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const Player = () => import('@/components/Player');
-const Team = () => import('@/components/Team');
-const DeleteView = () => import('@/components/DeleteView');
+const CategoryList = () => import('@/components/CategoryList');
+const RecipesList = () => import('@/components/RecipesList');
+const Recipe = () => import('@/components/Recipe');
 
 Vue.use(Router);
 
@@ -15,22 +15,24 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'players' },
+      redirect: { name: 'categories' },
     },
     {
-      path: '/players',
-      name: 'players',
-      component: Player
+      path: '/categories',
+      name: 'categories',
+      component: CategoryList
     },
     {
-      path: '/team',
-      name: 'team',
-      component: Team
+      path: '/recipes/:id',
+      name: 'recipes',
+      component: RecipesList,
+      props: true
     },
     {
-      path: '/delete',
-      name: 'delete',
-      component: DeleteView
+      path: '/recipe/:id',
+      name: 'recipe',
+      component: Recipe,
+      props: true
     },
   ],
   scrollBehavior(to, from, savedPosition) {

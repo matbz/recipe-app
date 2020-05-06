@@ -1,18 +1,16 @@
-const MemberController = require('../controllers/MemberController');
+const CategoryController = require('../controllers/CategoryController');
+const RecipeController = require('../controllers/RecipeController');
 const config = require('../config');
 
 module.exports = (app) => {
-  // Members
-  app.get('/api/members',
-    MemberController.index);
 
-  app.post('/api/members',
-    MemberController.create);
+  app.get('/api/categories',
+    CategoryController.index);
 
-  app.post('/api/members/delete',
-    MemberController.delete);
+  app.get('/api/categories/:categoryid/recipes',
+    RecipeController.index);
 
-  app.put('/api/members',
-    MemberController.update);
+    app.get('/api/recipes/:id',
+    RecipeController.get);
 
 }

@@ -1,62 +1,40 @@
-insert into account
-(name, csv_delimiter, csv_decimalsymbol, csv_offset, csv_encoding, budget_id)
+insert into recipecategory
+(name, position)
 values
-('ING-DiBa', ';', null, null, null, 1),
-('Volksbank', ';', null, null, null, 1)
+('Vorspeisen', 1),
+('Hauptspeisen', 2),
+('Nachspeisen', 3),
+('Backen', 4),
+('Salate & Snacks', 5),
+('Saucen & Dressings', 6);
 
-CREATE TABLE IF NOT EXISTS recipecategory (
-	id serial primary key,
-	name text not null,
-  position integer default 999,
-	imgpath text default null
-)
+insert into recipe
+(name, portions, recipecategory_id)
+values
+('Madras Curry',4,2),
+('Sun dried tomate parmesan chicken',4,2);
 
-CREATE TABLE IF NOT EXISTS recipe (
-	id serial primary key,
-	name text not null,
-  portions integer not null,
-	imgpath text default null,
-  recipecategory_id integer not null,
-  foreign key (recipecategory_id) references recipecategory(id)
-)
+insert into ingredientgroup
+(name, position, recipe_id)
+values
+('Sauce',2,2),
+('Marinade',1,2);
 
-CREATE TABLE IF NOT EXISTS tag (
-	id serial primary key,
-	name text not null,
-  imgpath text default null
-)
+insert into ingredient
+(name, quantity, measurement, identifier, position, ingredientgroup_id)
+values
+('Jogurt',65,'g','j',1,2),
+('Garam Masala',1,'TL','g',2,2),
+('Kreuzkümmel',0.5,'TL','k',3,2),
+('Chiliflocken',0.5,'TL','c',4,2),
+('Sahne',200,'ml','s',1,1),
+('Salz',1,'Prise','sz',3,1),
+('Pfeffer',1,'EL','p',2,1);
 
-CREATE TABLE IF NOT EXISTS ingredientgroup (
-	id serial primary key,
-	name text not null,
-	position integer default 999,
-  recipe_id integer not null,
-  foreign key (recipe_id) references recipe(id)
-)
+insert into recipestep
+(step, position, recipe_id)
+values
+('Marinade aus Jogurt $j$, Garam Masala $g$, Kreuzkümmel $k$ und Chiliflocken $c$ anrühren.',1,2),
+('Mit Salz $sz$ und Pfeffer $p$ würzen.',3,2),
+('Sahne $s$ erhitzen.',2,2);
 
-CREATE TABLE IF NOT EXISTS ingredient (
-	id serial primary key,
-	name text not null,
-	quantity numeric(14,2) not null,
-  measurement text not null,
-  identifier text default null,
-  position integer default 999,
-  ingredientgroup_id integer not null,
-  foreign key (ingredientgroup_id) references ingredientgroup(id)
-)
-
-CREATE TABLE IF NOT EXISTS recipestep (
-	id serial primary key,
-	step text not null,
-	position integer default 999,
-  recipe_id integer not null,
-  foreign key (recipe_id) references recipe(id)
-)
-
-CREATE TABLE IF NOT EXISTS recipe_tag (
-	id serial primary key,
-  recipe_id integer not null,
-  tag_id integer not null,
-  foreign key (recipe_id) references recipe(id)
-  foreign key (tag_id) references tag(id),
-)

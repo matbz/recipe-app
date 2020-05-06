@@ -31,19 +31,16 @@
         <div class="footer-text">Suchen</div>
       </button>
     </div>
-    <modal-add-player name='add-player'></modal-add-player>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import PlayerItem from './PlayerItem';
-import ModalAddPlayer from './ModalAddPlayer';
+import Ingredient from './Ingredient';
 
 export default {
   components: {
-    PlayerItem,
-    ModalAddPlayer
+    Ingredient,
   },
   computed: {
     ...mapGetters([

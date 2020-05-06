@@ -107,7 +107,7 @@ input:focus {
   text-align: center;
   align-self: center;
   font-size: 1.05em;
-  margin-top: 9px;
+  margin-top: 0.6em;
 }
 
 .header-cancel {
@@ -316,7 +316,7 @@ input:focus {
 
 .content2 {
   width: 100%;
-  height: 84%;
+  height: 86%;
   top: 6%;
   background: #efeff4;
   position: absolute;
@@ -331,6 +331,10 @@ input:focus {
   height: 8%;
   width: 100%;
   color: #666;
+}
+
+.footer > button {
+  margin-top: 0.2em;
 }
 
 .footer-icon {
@@ -562,4 +566,143 @@ input:focus {
   width: 100%;
   padding: .1em 0 .5em;
   letter-spacing: 0;
+}
+
+.categories {
+  padding: .1em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category{
+  margin: .5em;
+  width: 45.5%;
+  height: 10em;
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+.category h1 {
+  font-size: 1.2em;
+  /* font-weight: 400; */
+  text-align: center;
+  padding: 0.5em;
+  line-height: 1.5em;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.recipelistitem {
+  float: left;
+  /* font-weight: 400 !important; */
+}
+
+.recipe {
+  background-color: #fff;
+  padding: 0 .5em .5em .5em;
+}
+
+.recipe_text {
+  /* border-bottom: 1px solid #999; */
+  padding: 1em 0 .5em 0;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.recipe_text2 {
+  /* border-bottom: 1px solid #999; */
+  padding: 1.7em 0 .5em 0;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: .25em;
+}
+
+.portions {
+  padding: 1em 0 .4em 0;
+}
+
+hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
+
+.pbutton {
+  color: #23b2ce;
+  font-size: 1.75em;
+  text-decoration: none;
+  line-height: 0;
+  border: 1px solid transparent;
+  border-radius: 1000px;
+  transition-property: all;
+  padding: 0.4em 0 0 1.5em;
+  cursor: pointer;
+}
+
+.portionnumber{
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-right: .5em;
+}
+
+.iggroup{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: .5em;
+}
+
+.igheader {
+  color: #00697e;
+  padding: 1.5em 0 .7em 0;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.ig {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+.igm {
+  width: 35%;
+}
+
+.igr {
+  padding: .5em 0 0 0;
+}
+
+.step{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.stepheader {
+  color: #00697e;
+  padding: 1em 0 .9em 0;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.steptext {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 0.8em;
+  line-height: 1.5em;
+}
+
+.stepr {
+  padding: .5em 0 0 0;
 }
