@@ -1,7 +1,8 @@
 <template>
-  <div class="category" @click="goToRecipes(item.id)">
-    <h1>{{ item.name }}</h1>
-  </div>
+  <div class="pure-g ig">
+    <div class="pure-u-1-2 igr igm">{{Number(quantity).toLocaleString()}} {{item.measurement}}</div>
+    <div class="pure-u-1-2 igr">{{item.name}}</div>
+  </div>  
 </template>
 
 <script>
@@ -9,17 +10,19 @@ import { mapGetters } from 'vuex';
 
 export default {
   props: [
-    'item'
+    'item',
+    'pfactor'
   ],
   computed: {
     ...mapGetters([
 
-    ])
+    ]),
+    quantity() {
+      return this.item.quantity * this.pfactor;
+    }
   },
   methods: {
-    goToRecipes(id) {
-      this.$router.push({ name: 'recipes', params: { id: id } });
-    }
+
   }
 };
 </script>

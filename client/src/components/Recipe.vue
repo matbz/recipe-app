@@ -12,65 +12,21 @@ d<template>
             <div class="pure-u-1-3"><span class="portionnumber">{{this.portions}}</span>Portionen</div>
             <div class="pure-u-1-3"><i class="fa fa-plus-circle pbutton" @click="adjustPortions(1)"></i></div>
           </div>
-          <div class="pure-g iggroup">
-            <div class="pure-u-1 igheader">Marinade</div>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">60 g</div>
-              <div class="pure-u-1-2 igr">Jogurt</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-          </div>
-          <div class="pure-g iggroup">
-            <div class="pure-u-1 igheader">Marinade</div>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">60 g</div>
-              <div class="pure-u-1-2 igr">Jogurt</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-            <div class="pure-g ig">
-              <div class="pure-u-1-2 igr igm">1000 Stück</div>
-              <div class="pure-u-1-2 igr">Hähnchenfleisch</div>
-            </div>
-            <hr>
-          </div>
+          <ingredient-group
+          v-for="item in ingredientGroups"
+          :item = "item"
+          :pfactor = pFactor
+          :key="item.id"
+          >
+          </ingredient-group>
           <div class="pure-u-1 recipe_text2">Zubereitung</div>
-          <div class="pure-g step">
-            <div class="pure-u-1 stepheader">Schritt 1</div>
-            <div class="pure-u-1-1 steptext">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-          </div>
-          <div class="pure-g step">
-            <div class="pure-u-1 stepheader">Schritt 2</div>
-            <div class="pure-u-1-1 steptext">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-          </div>
-          <div class="pure-g step">
-            <div class="pure-u-1 stepheader">Schritt 3</div>
-            <div class="pure-u-1-1 steptext">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-          </div>
+          <step
+          v-for="item in steps"
+          :item = "item"
+          :pfactor = pFactor
+          :key="item.name"
+          >
+          </step>
        </div>
       </div>
     </div>
@@ -94,10 +50,12 @@ d<template>
 <script>
 import { mapGetters } from 'vuex';
 import IngredientGroup from './IngredientGroup';
+import Step from './Step';
 
 export default {
   components: {
-    IngredientGroup
+    IngredientGroup,
+    Step
   },
   props: [
     'id'
@@ -110,8 +68,13 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'recipes'
-    ])
+      'recipes',
+      'steps',
+      'ingredientGroups'
+    ]),
+    pFactor() {
+      return this.portions / this.recipe.portions;
+    }
   },
   methods: {
     goTo(routeName) {
@@ -134,6 +97,10 @@ export default {
     }
 
     this.portions = this.recipe.portions;
+
+    this.$store.dispatch('getIngredientGroups', this.recipe.id);
+    this.$store.dispatch('getIngredients', this.recipe.id);
+    this.$store.dispatch('getSteps', this.recipe.id);
   }
 };
 </script>

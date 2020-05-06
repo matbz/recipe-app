@@ -1,13 +1,17 @@
-CREATE TABLE IF NOT EXISTS "user" (
-	id serial primary key,
-	username text unique not null,
-	password text not null
-);
+DROP TABLE IF EXISTS recipestep;
+DROP TABLE IF EXISTS recipe_tag;
+DROP TABLE IF EXISTS ingredient;
+DROP TABLE IF EXISTS ingredientgroup;
+DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS recipe;
+DROP TABLE IF EXISTS recipecategory;
+
+ 
 
 CREATE TABLE IF NOT EXISTS recipecategory (
 	id serial primary key,
 	name text not null,
-  position integer default 999,
+  	position integer default 999,
 	imgpath text default null
 );
 

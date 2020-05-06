@@ -34,7 +34,7 @@ values
 insert into recipestep
 (step, position, recipe_id)
 values
-('Marinade aus Jogurt $j$, Garam Masala $g$, Kreuzkümmel $k$ und Chiliflocken $c$ anrühren.',1,2),
-('Mit Salz $sz$ und Pfeffer $p$ würzen.',3,2),
-('Sahne $s$ erhitzen.',2,2);
+('Marinade aus Jogurt %j%, Garam Masala %g%, Kreuzkümmel %k% und Chiliflocken %c% anrühren.',1,2),
+('Mit Salz %sz% und Pfeffer %p% würzen.',3,2),
+('Sahne %s% erhitzen.',2,2);
 

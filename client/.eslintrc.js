@@ -52,6 +52,12 @@ module.exports = {
     'radix': 0,
     'no-nested-ternary': 0,
     'no-await-in-loop': 0,
-    'no-plusplus': 0
+    'no-plusplus': 0,
+    'quote-props': 0,
+    'indent': 0,
+    'no-trailing-spaces': 0,
+    'no-unused-vars': 0,
+    'prefer-arrow-callback': 0,
+    'space-before-function-paren': 0
   }
 }
