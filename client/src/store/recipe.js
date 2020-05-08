@@ -22,7 +22,18 @@ const recipe = {
       state.recipes = data;
     },
     SET_STEPS(state, data) {
-      state.steps = data;
+      const sortedList = [];
+
+      data.forEach((e, index) => {
+        sortedList.push({
+          id: e.id,
+          step: e.step,
+          position: index + 1,
+          recipe_id: e.recipe_id
+        });
+      });
+
+      state.steps = sortedList;
     },
     SET_INGREDIENTGROUPS(state, data) {
       state.ingredientGroups = data;
