@@ -1,18 +1,22 @@
 insert into recipecategory
 (name, position)
 values
-('Vorspeisen', 1),
-('Hauptspeisen', 2),
-('Nachspeisen', 3),
-('Backen', 4),
-('Salate & Snacks', 5),
-('Saucen & Dressings', 6);
+('Aufläufe & Gratins', 1),
+('Aufstriche, Dips & Saucen', 2),
+('Brot & Backwaren', 3),
+('Desserts & Sweets', 4),
+('Getränke & Sirups', 5),
+('Hauptgerichte & Beilagen', 6),
+('Kuchen, Torten & Gebäck', 7),
+('Pasta & Pizza', 8),
+('Salate & Snacks', 9),
+('Suppen, Brei & Eintöpfe', 10);
 
 insert into recipe
 (name, portions, recipecategory_id)
 values
-('Madras Curry',4,2),
-('Sun dried tomate parmesan chicken',4,2);
+('Madras Curry',4,6),
+('Sun dried tomate parmesan chicken',4,6);
 
 insert into ingredientgroup
 (name, position, recipe_id)

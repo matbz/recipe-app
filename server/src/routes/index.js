@@ -25,4 +25,16 @@ module.exports = (app) => {
 
   app.get('/api/ingredientgroups/:id/ingredients',
     IngredientController.index);
+
+  app.get('/api/all/recipes',
+    RecipeController.all);
+
+  app.get('/api/all/ingredientgroups',
+    IngredientGroupController.all);
+
+  app.get('/api/all/ingredients',
+    IngredientController.all);
+
+  app.get('/api/all/steps',
+    StepController.all);
 }

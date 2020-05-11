@@ -1,7 +1,8 @@
 <template>
-  <button class="pure-u-1" @click="goToRecipe(item.id)">
-    <span class="recipelistitem">{{ item.name }}</span>
-  </button>
+  <div class="pure-u-1 rlitem" @click="goToRecipe(item.id)">
+    <div class="rlimg" :style="{ backgroundImage: 'url(' + item.imgpath + ')' }"></div>
+    <div>{{item.name}}</div>
+  </div>
 </template>
 
 <script>

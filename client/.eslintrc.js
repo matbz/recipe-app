@@ -57,7 +57,11 @@ module.exports = {
     'indent': 0,
     'no-trailing-spaces': 0,
     'no-unused-vars': 0,
+    'curly': 0,
+    'no-var': 0,
+    'vars-on-top': 0,
+    'space-infix-ops': 0,
     'prefer-arrow-callback': 0,
-    'space-before-function-paren': 0
+    'space-before-function-paren': 0,
   }
 }

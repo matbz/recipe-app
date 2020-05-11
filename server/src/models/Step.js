@@ -16,9 +16,19 @@ class Step {
     this.recipe_id = data.recipe_id;
   }
 
+  async index() {
+    try {
+      const query = SQL`select * from recipestep order by position`;
+
+      return await db.manyOrNone(query);
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   async all(id) {
     try {
-      
+
       const query = SQL`select * from recipestep where recipe_id = ${id} order by position`;
 
       return await db.manyOrNone(query);

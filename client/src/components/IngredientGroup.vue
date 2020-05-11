@@ -7,7 +7,7 @@
     :key="item.id"
     :pfactor = pfactor
     >
-    </ingredient>    
+    </ingredient>
   </div>
 </template>
 

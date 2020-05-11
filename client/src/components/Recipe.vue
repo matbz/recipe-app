@@ -1,27 +1,31 @@
 d<template>
   <div style="height: 100%">
-    <div class="pure-g header">
+    <!-- <div class="pure-g header">
       <div class="pure-u-1-1 header-text">{{this.recipe.name}}</div>
-    </div>
-    <div class="content2">
+    </div> -->
+    <div class="contents3">
+    <div class="rimg" :style="{ backgroundImage: 'url(' + recipe.imgpath + ')' }"></div>
       <div class="pure-g">
         <div class="recipe" style="width: 100%; height: 100%">
-          <div class="pure-u-1 recipe_text">Zutaten</div>
-          <div class="pure-g portions">
+          <div class="pure-u-1 recipeh_text">{{recipe.name}}</div>
+          <div v-if="igList.length > 0" class="pure-u-1 recipe_text">Zutaten</div>
+          <div v-else class="pure-u-1 recipe_text">Keine Zutaten angegeben</div>
+          <div v-if="igList.length > 0" class="pure-g portions">
             <div class="pure-u-1-3"><i class="fa fa-minus-circle pbutton" @click="adjustPortions(-1)"></i></div>
             <div class="pure-u-1-3"><span class="portionnumber">{{this.portions}}</span>Portionen</div>
             <div class="pure-u-1-3"><i class="fa fa-plus-circle pbutton" @click="adjustPortions(1)"></i></div>
           </div>
           <ingredient-group
-          v-for="item in ingredientGroups"
+          v-for="item in igList"
           :item = "item"
           :pfactor = pFactor
           :key="item.id"
           >
           </ingredient-group>
-          <div class="pure-u-1 recipe_text2">Zubereitung</div>
+          <div v-if="stepList.length > 0" class="pure-u-1 recipe_text2">Zubereitung</div>
+          <div v-else class="pure-u-1 recipe_text2">Keine Zubereitungsschritte angegeben</div>
           <step
-          v-for="item in steps"
+          v-for="item in stepList"
           :item = "item"
           :pfactor = pFactor
           :key="item.name"
@@ -31,16 +35,16 @@ d<template>
       </div>
     </div>
     <div class="pure-g footer">
-      <button class="pure-u-1-3" @click="$router.go(-1)">
-        <div><i class="fa fa-arrow-left footer-icon"></i></div>
+      <button class="pure-u-1-3" @click="$router.back()">
+        <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
         <div class="footer-text">Zurück</div>
       </button>
-      <button class="pure-u-1-3 active" @click="goTo('categories')">
+      <button :class="{ active: isRecipeActive }" class="pure-u-1-3" @click="goTo('categories')">
         <div><i class="fa fa-clone footer-icon"></i></div>
         <div class="footer-text">Kategorien</div>
       </button>
-      <button class="pure-u-1-3">
-        <div><i class="fa fa-search footer-icon"></i></div>
+      <button :class="{ active: isSearchActive }" class="pure-u-1-3" @click="goTo('search')">
+        <div><i class="fa fa-search footer-icon thin"></i></div>
         <div class="footer-text">Suchen</div>
       </button>
     </div>
@@ -48,6 +52,7 @@ d<template>
 </template>
 
 <script>
+import store from '@/store';
 import { mapGetters } from 'vuex';
 import IngredientGroup from './IngredientGroup';
 import Step from './Step';
@@ -60,10 +65,22 @@ export default {
   props: [
     'id'
   ],
+  beforeRouteEnter(to, from, next) {
+    if (store.getters.recipes.length === 0) {
+      store.dispatch('load').then(res => next(vm => {
+        vm.from = from;
+      }));
+    } else {
+      next(vm => {
+        vm.from = from;
+      });
+    }
+  },
   data() {
     return {
       recipe: null,
-      portions: null
+      portions: null,
+      from: null
     };
   },
   computed: {
@@ -72,9 +89,39 @@ export default {
       'steps',
       'ingredientGroups'
     ]),
+    stepList() {
+      const sortedList = [];
+      const data = this.steps.filter(e => e.recipe_id === Number(this.id));
+
+      data.forEach((e, index) => {
+        sortedList.push({
+          id: e.id,
+          step: e.step,
+          position: index + 1,
+          recipe_id: e.recipe_id
+        });
+      });
+
+      return sortedList;
+    },
+    igList() {
+      return this.ingredientGroups.filter(e => e.recipe_id === Number(this.id));
+    },
     pFactor() {
       return this.portions / this.recipe.portions;
-    }
+    },
+    isRecipeActive() {
+      if (this.from != null) {
+        return this.from.name === 'recipes';
+      }
+      return false;
+    },
+    isSearchActive() {
+      if (this.from != null) {
+        return this.from.name === 'search';
+      }
+      return false;
+    },
   },
   methods: {
     goTo(routeName) {
@@ -82,25 +129,12 @@ export default {
     },
     adjustPortions(no) {
       if (this.portions + no >= 1) this.portions += no;
-    },
-    async getRecipe() {
-      await this.$store.dispatch('getRecipe', this.id);
     }
   },
-  async created() {
-    if (this.recipes.length === 0) await this.getRecipe();
-
-    if (this.recipes.length === 1) {
-      this.recipe = this.recipes[0];
-    } else {
-      this.recipe = this.recipes[this.id - 1];
-    }
+  created() {
+    this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     this.portions = this.recipe.portions;
-
-    this.$store.dispatch('getIngredientGroups', this.recipe.id);
-    this.$store.dispatch('getIngredients', this.recipe.id);
-    this.$store.dispatch('getSteps', this.recipe.id);
   }
 };
 </script>

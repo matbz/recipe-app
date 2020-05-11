@@ -4,6 +4,7 @@ import { HTTP } from '@/common/utilities';
 
 Vue.use(Vuex);
 
+const SET_CATEGORIES = 'SET_CATEGORIES';
 const SET_RECIPES = 'SET_RECIPES';
 const SET_STEPS = 'SET_STEPS';
 const SET_INGREDIENTGROUPS = 'SET_INGREDIENTGROUPS';
@@ -15,25 +16,18 @@ const recipe = {
     recipes: [],
     steps: [],
     ingredientGroups: [],
-    ingredients: []
+    ingredients: [],
+    categories: []
   },
   mutations: {
+    SET_CATEGORIES(state, data) {
+      state.categories = data;
+    },
     SET_RECIPES(state, data) {
       state.recipes = data;
     },
     SET_STEPS(state, data) {
-      const sortedList = [];
-
-      data.forEach((e, index) => {
-        sortedList.push({
-          id: e.id,
-          step: e.step,
-          position: index + 1,
-          recipe_id: e.recipe_id
-        });
-      });
-
-      state.steps = sortedList;
+      state.steps = data;
     },
     SET_INGREDIENTGROUPS(state, data) {
       state.ingredientGroups = data;
@@ -82,9 +76,34 @@ const recipe = {
       } catch (error) {
         throw new Error(error);
       }
-    }
+    },
+    async getCategories({ commit }) {
+      try {
+        const response = await HTTP.get('api/categories');
+        commit(SET_CATEGORIES, response.data);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    async load({ commit }) {
+      try {
+        let response = await HTTP.get('api/all/recipes');
+        commit(SET_RECIPES, response.data);
+        response = await HTTP.get('api/all/ingredientgroups');
+        commit(SET_INGREDIENTGROUPS, response.data);
+        response = await HTTP.get('api/all/ingredients');
+        commit(SET_INGREDIENTS, response.data);
+        response = await HTTP.get('api/all/steps');
+        commit(SET_STEPS, response.data);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
   },
   getters: {
+    categories(state) {
+      return state.categories;
+    },
     recipes(state) {
       return state.recipes;
     },

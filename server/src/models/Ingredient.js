@@ -19,18 +19,38 @@ class Ingredient {
     this.ingredientgroup_id = this.ingredientgroup_id;
   }
 
-  async all(id) {
+  async index() {
     try {
       const query = SQL`
-      select 
-        i.name, 
-        i.quantity, 
+      select
+        i.name,
+        i.quantity,
         i.measurement,
         i.identifier,
         i.position,
         i.ingredientgroup_id
       from ingredientgroup as ig
-      inner join ingredient as i on i.ingredientgroup_id = ig.id 
+      inner join ingredient as i on i.ingredientgroup_id = ig.id
+          `;
+
+      return await db.manyOrNone(query);
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  async all(id) {
+    try {
+      const query = SQL`
+      select
+        i.name,
+        i.quantity,
+        i.measurement,
+        i.identifier,
+        i.position,
+        i.ingredientgroup_id
+      from ingredientgroup as ig
+      inner join ingredient as i on i.ingredientgroup_id = ig.id
       where recipe_id = ${id}
           `;
 

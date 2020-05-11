@@ -1,6 +1,7 @@
 <template>
   <div class="category" @click="goToRecipes(item.id)">
-    <h1>{{ item.name }}</h1>
+    <img class="cat_img" :src="imgsrc">
+    <h1>{{ item.name.toUpperCase() }}</h1>
   </div>
 </template>
 
@@ -14,7 +15,10 @@ export default {
   computed: {
     ...mapGetters([
 
-    ])
+    ]),
+    imgsrc() {
+      return `../../../static/${this.item.id}.svg`;
+    }
   },
   methods: {
     goToRecipes(id) {

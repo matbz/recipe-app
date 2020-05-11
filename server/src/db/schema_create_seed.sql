@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS tag;
 DROP TABLE IF EXISTS recipe;
 DROP TABLE IF EXISTS recipecategory;
 
- 
+
 
 CREATE TABLE IF NOT EXISTS recipecategory (
 	id serial primary key,
@@ -22,12 +22,6 @@ CREATE TABLE IF NOT EXISTS recipe (
 	imgpath text default null,
   recipecategory_id integer not null,
   foreign key (recipecategory_id) references recipecategory(id)
-);
-
-CREATE TABLE IF NOT EXISTS tag (
-	id serial primary key,
-	name text not null,
-  imgpath text default null
 );
 
 CREATE TABLE IF NOT EXISTS ingredientgroup (
@@ -55,12 +49,4 @@ CREATE TABLE IF NOT EXISTS recipestep (
 	position integer default 999,
   recipe_id integer not null,
   foreign key (recipe_id) references recipe(id)
-);
-
-CREATE TABLE IF NOT EXISTS recipe_tag (
-	id serial primary key,
-  recipe_id integer not null,
-  tag_id integer not null,
-  foreign key (recipe_id) references recipe(id),
-  foreign key (tag_id) references tag(id)
 );

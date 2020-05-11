@@ -16,6 +16,16 @@ class Recipe {
     this.imgpath = data.imgpath;
   }
 
+  async index() {
+    try {
+      const query = SQL`select * from recipe order by name`;
+
+      return await db.manyOrNone(query);
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   async all(categoryid) {
     try {
       const query = SQL`select * from recipe where recipecategory_id = ${categoryid} order by name`;

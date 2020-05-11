@@ -1,7 +1,12 @@
 <template>
   <div style="height: 100%">
     <div class="pure-g header">
-      <div class="pure-u-1-1 header-text">{{ this.categories[this.id - 1].name.toUpperCase() }}</div>
+    <div class="search">
+        <div class="input-icons">
+            <i class="fa fa-search icon"></i>
+            <input class="input-field" type="text" placeholder="Suche nach Zutaten, Rezepte, usw.">
+        </div>
+  </div>
     </div>
     <div class="content2">
       <div class="pure-g add-list">
@@ -9,11 +14,10 @@
           <div v-if="recipeList.length === 0" class="turnover-group2">Keine Rezepte vorhanden</div>
           <div class="recipes">
               <recipe-list-item
-              v-for="item in recipeList"
+              v-for="item in recipes"
               :item = "item"
               :key="item.id"
               >
-
               </recipe-list-item>
           </div>
         </div>
@@ -24,11 +28,11 @@
         <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
         <div class="footer-text">Zurück</div>
       </button>
-      <button class="pure-u-1-3 active" @click="goTo('categories')">
+      <button class="pure-u-1-3" @click="goTo('categories')">
         <div><i class="fa fa-clone footer-icon"></i></div>
         <div class="footer-text">Kategorien</div>
       </button>
-      <button class="pure-u-1-3" @click="goTo('search')">
+      <button class="pure-u-1-3 active" @click="goTo('search')">
         <div><i class="fa fa-search footer-icon thin"></i></div>
         <div class="footer-text">Suchen</div>
       </button>
@@ -45,9 +49,6 @@ export default {
   components: {
     RecipeListItem
   },
-  props: [
-    'id'
-  ],
   beforeRouteEnter(to, from, next) {
     if (store.getters.recipes.length === 0) {
       store.dispatch('load').then(res => next());
@@ -57,7 +58,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'categories',
       'recipes'
     ]),
     recipeList() {

@@ -16,6 +16,16 @@ class Ingredient {
     this.recipe_id = this.recipe_id;
   }
 
+  async index() {
+    try {
+      const query = SQL`select * from ingredientgroup order by position`;
+
+      return await db.manyOrNone(query);
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   async all(id) {
     try {
       const query = SQL`select * from ingredientgroup where recipe_id = ${id} order by position`;
