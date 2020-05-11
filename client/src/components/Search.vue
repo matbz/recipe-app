@@ -4,7 +4,7 @@
     <div class="search">
         <div class="input-icons">
             <i class="fa fa-search icon"></i>
-            <input class="input-field" type="text" placeholder="Suche nach Zutaten, Rezepte, usw.">
+            <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="input-field" type="text" placeholder="Suche nach Zutaten, Rezepte, usw.">
         </div>
   </div>
     </div>
