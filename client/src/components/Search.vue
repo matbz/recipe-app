@@ -11,7 +11,7 @@
     <div class="content2">
       <div class="pure-g add-list">
         <div style="width: 100%; height: 100%">
-          <div v-if="recipeList.length === 0" class="turnover-group2">Keine Rezepte vorhanden</div>
+          <!-- <div v-if="recipeList.length === 0" class="turnover-group2">Keine Rezepte vorhanden</div> -->
           <div class="recipes">
               <recipe-list-item
               v-for="item in recipes"

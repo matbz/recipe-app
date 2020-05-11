@@ -785,11 +785,12 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
 
 .input-icons i {
   position: absolute;
+  color: #9e9ea0;
 }
 
 .input-icons {
   width: 100%;
-  margin-bottom: 10px;
+  margin: .1em 0;
 }
 
 .icon {
@@ -799,15 +800,28 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
 
 .input-field {
   width: 100%;
-  padding: 10px;
-  text-indent: 1em;
+  padding: .5em;
+  text-indent: 1.6em;
+  background-color: #e7e7e9;
+  display: block;
+  border-radius: 5px;
+  outline: none;
+  border: 0;
 }
 
-.input-field:focus {
-  outline: none;
+input:focus, input.form-control:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
 }
+
+*:focus {
+  outline: none!important;
+  }
 
 .search {
-  max-width: 400px;
+  width: 80%;
   margin: auto;
 }
