@@ -824,5 +824,5 @@ input:focus, input.form-control:focus {
 .search {
   width: 93%;
   /* margin:0 auto; */
-  margin: 0 0 0 .3em;
+  margin: .1em 0 0 .3em;
 }
