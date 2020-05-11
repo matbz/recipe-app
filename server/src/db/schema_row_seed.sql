@@ -13,10 +13,18 @@ values
 ('Suppen, Brei & Eintöpfe', 10);
 
 insert into recipe
-(name, portions, recipecategory_id)
+(name, portions, imgpath, recipecategory_id)
 values
-('Madras Curry',4,6),
-('Sun dried tomate parmesan chicken',4,6);
+('AMadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('BSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('CMadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('DSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Eadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Fun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Gadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Hun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Iadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Jun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6);
 
 insert into ingredientgroup
 (name, position, recipe_id)
