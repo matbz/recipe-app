@@ -14,6 +14,9 @@ module.exports = (app) => {
   app.get('/api/categories/:categoryid/recipes',
     RecipeController.index);
 
+  app.get('/api/recipesfull',
+    RecipeController.full);
+
   app.get('/api/recipes/:id',
     RecipeController.get);
 

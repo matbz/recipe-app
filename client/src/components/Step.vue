@@ -8,6 +8,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
+const Ratio = require('lb-ratio');
+
 export default {
   props: [
     'item',
@@ -22,13 +24,14 @@ export default {
       let no = 0;
 
       this.ingredients.forEach(e => {
-        no = e.quantity * this.pfactor;
-        replacements[`%${e.identifier}%`] = `(${Number(no).toLocaleString()} ${e.measurement})`;
+        no = Ratio.parse(e.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8);
+
+        replacements[`%${e.identifier}%`] = `(${no.toLocaleString()} ${e.measurement})`;
       });
 
       return this.item.step.replace(/%\w+%/g, function (all) {
         return replacements[all] || all;
-      });      
+      });
     }
   },
   methods: {

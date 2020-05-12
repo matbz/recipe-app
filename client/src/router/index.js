@@ -41,14 +41,7 @@ const router = new Router({
       component: Recipe,
       props: true
     },
-  ],
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else if (savedPosition === null) {
-      return { x: 0, y: 0 };
-    }
-  }
+  ]
 });
 
 export default router;

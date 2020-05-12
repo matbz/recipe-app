@@ -63,5 +63,6 @@ module.exports = {
     'space-infix-ops': 0,
     'prefer-arrow-callback': 0,
     'space-before-function-paren': 0,
+    'no-tabs': 0
   }
 }

@@ -11,22 +11,22 @@ values
 ('Pasta & Pizza', 8),
 ('Salate', 9),
 ('Snacks', 10),
-('Saucen, Dressings & Dips', 11),
+('Saucen, Dressings & Basics', 11),
 ('Suppen & Eintöpfe', 12);
 
 insert into recipe
 (name, portions, imgpath, recipecategory_id)
 values
-('AMadras Curry',4,'https://admin.matbz.com/1.jpg',7),
-('BSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',7),
-('CMadras Curry',4,'https://admin.matbz.com/1.jpg',7),
-('DSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',7),
-('Eadras Curry',4,'https://admin.matbz.com/1.jpg',7),
-('Fun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',7),
-('Gadras Curry',4,'https://admin.matbz.com/1.jpg',7),
-('Hun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',7),
-('Iadras Curry',4,'https://admin.matbz.com/1.jpg',7),
-('Jun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',7);
+('AMadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('BSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('CMadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('DSun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Eadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Fun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Gadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Hun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6),
+('Iadras Curry',4,'https://admin.matbz.com/1.jpg',6),
+('Jun dried tomate parmesan chicken',4,'https://admin.matbz.com/2.jpg',6);
 
 insert into ingredientgroup
 (name, position, recipe_id)

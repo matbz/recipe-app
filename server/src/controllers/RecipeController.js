@@ -25,6 +25,18 @@ module.exports = {
       });
     }
   },
+  async full(req, res) {
+    const recipe = new Recipe();
+    try {
+      const results = await recipe.full();
+
+      res.json(results);
+    } catch (err) {
+      res.status(500).json({
+       error: 'An error has occured trying to get all categories'
+      });
+    }
+  },
   async get(req, res) {
     const recipe = new Recipe();
     try {

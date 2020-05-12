@@ -1,9 +1,9 @@
 <template>
-  <div style="height: 100%">
+  <div>
     <div class="pure-g header">
       <div class="pure-u-1-1 header-text">KATEGORIEN</div>
     </div>
-    <div class="content2">
+    <div class="content2" v-on:scroll.passive="handleScroll($event)">
       <div class="categories">
         <category
           v-for="item in categories"
@@ -40,13 +40,26 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'categories'
+      'categories',
+      'scrollCategory'
     ])
   },
   methods: {
     goTo(routeName) {
       this.$router.push({ name: routeName });
+    },
+    handleScroll(e) {
+      this.$store.dispatch('setScrollCategory', e.target.scrollTop);
     }
+  },
+  mounted() {
+    const container = this.$el.querySelector('.content2');
+    container.scrollTop = this.scrollCategory;
+  },
+  created() {
+    this.$store.dispatch('setScrollSearch', 0);
+    this.$store.dispatch('setScrollRecipe', 0);
+    this.$store.dispatch('setSearchString', '');
   }
 };
 </script>

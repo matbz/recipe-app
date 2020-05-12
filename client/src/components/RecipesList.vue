@@ -1,9 +1,9 @@
 <template>
-  <div style="height: 100%">
+  <div>
     <div class="pure-g header">
       <div class="pure-u-1-1 header-text">{{ this.categories[this.id - 1].name.toUpperCase() }}</div>
     </div>
-    <div class="content2">
+    <div class="content2" v-on:scroll.passive="handleScroll($event)">
       <div class="pure-g add-list">
         <div style="width: 100%; height: 100%">
           <div v-if="recipeList.length === 0" class="turnover-group2">Keine Rezepte vorhanden</div>
@@ -58,7 +58,8 @@ export default {
   computed: {
     ...mapGetters([
       'categories',
-      'recipes'
+      'recipes',
+      'scrollRecipe'
     ]),
     recipeList() {
       return this.recipes.filter(e => e.recipecategory_id === Number(this.id));
@@ -67,7 +68,14 @@ export default {
   methods: {
      goTo(routeName) {
       this.$router.push({ name: routeName });
+    },
+    handleScroll(e) {
+      this.$store.dispatch('setScrollRecipe', e.target.scrollTop);
     }
+  },
+  mounted() {
+    const container = this.$el.querySelector('.content2');
+    container.scrollTop = this.scrollRecipe;
   }
 };
 </script>

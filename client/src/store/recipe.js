@@ -6,9 +6,14 @@ Vue.use(Vuex);
 
 const SET_CATEGORIES = 'SET_CATEGORIES';
 const SET_RECIPES = 'SET_RECIPES';
+const SET_RECIPESFULL = 'SET_RECIPESFULL';
 const SET_STEPS = 'SET_STEPS';
 const SET_INGREDIENTGROUPS = 'SET_INGREDIENTGROUPS';
 const SET_INGREDIENTS = 'SET_INGREDIENTS';
+const SET_SEARCHSTRING = 'SET_SEARCHSTRING';
+const SET_SCROLLCATEGORY = 'SET_SCROLLCATEGORY';
+const SET_SCROLLSEARCH = 'SET_SCROLLSEARCH';
+const SET_SCROLLRECIPE = 'SET_SCROLLRECIPE';
 
 const recipe = {
   namespaced: false,
@@ -17,7 +22,12 @@ const recipe = {
     steps: [],
     ingredientGroups: [],
     ingredients: [],
-    categories: []
+    categories: [],
+    recipesFull: [],
+    scrollCategory: 0,
+    scrollSearch: 0,
+    scrollRecipe: 0,
+    searchString: ''
   },
   mutations: {
     SET_CATEGORIES(state, data) {
@@ -25,6 +35,9 @@ const recipe = {
     },
     SET_RECIPES(state, data) {
       state.recipes = data;
+    },
+    SET_RECIPESFULL(state, data) {
+      state.recipesFull = data;
     },
     SET_STEPS(state, data) {
       state.steps = data;
@@ -35,12 +48,32 @@ const recipe = {
     SET_INGREDIENTS(state, data) {
       state.ingredients = data;
     },
+    SET_SEARCHSTRING(state, data) {
+      state.searchString = data;
+    },
+    SET_SCROLLCATEGORY(state, data) {
+      state.scrollCategory = data;
+    },
+    SET_SCROLLSEARCH(state, data) {
+      state.scrollSearch = data;
+    },
+    SET_SCROLLRECIPE(state, data) {
+      state.scrollRecipe = data;
+    }
   },
   actions: {
     async getRecipes({ commit }, categoryid) {
       try {
         const response = await HTTP.get(`/api/categories/${categoryid}/recipes`);
         commit(SET_RECIPES, response.data);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    async getRecipesFull({ commit }) {
+      try {
+        const response = await HTTP.get('/api/recipesfull');
+        commit(SET_RECIPESFULL, response.data);
       } catch (error) {
         throw new Error(error);
       }
@@ -99,6 +132,18 @@ const recipe = {
         throw new Error(error);
       }
     },
+    setSearchString({ commit }, sString) {
+      commit(SET_SEARCHSTRING, sString);
+    },
+    setScrollCategory({ commit }, scrollPosition) {
+      commit(SET_SCROLLCATEGORY, scrollPosition);
+    },
+    setScrollSearch({ commit }, scrollPosition) {
+      commit(SET_SCROLLSEARCH, scrollPosition);
+    },
+    setScrollRecipe({ commit }, scrollPosition) {
+      commit(SET_SCROLLRECIPE, scrollPosition);
+    }
   },
   getters: {
     categories(state) {
@@ -115,6 +160,21 @@ const recipe = {
     },
     steps(state) {
       return state.steps;
+    },
+    recipesFull(state) {
+      return state.recipesFull;
+    },
+    searchString(state) {
+      return state.searchString;
+    },
+    scrollCategory(state) {
+      return state.scrollCategory;
+    },
+    scrollSearch(state) {
+      return state.scrollSearch;
+    },
+    scrollRecipe(state) {
+      return state.scrollRecipe;
     }
   }
 };

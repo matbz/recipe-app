@@ -1,20 +1,18 @@
 d<template>
-  <div style="height: 100%">
-    <!-- <div class="pure-g header">
-      <div class="pure-u-1-1 header-text">{{this.recipe.name}}</div>
-    </div> -->
+  <div>
     <div class="contents3">
     <div class="rimg" :style="{ backgroundImage: 'url(' + recipe.imgpath + ')' }"></div>
       <div class="pure-g">
         <div class="recipe" style="width: 100%; height: 100%">
           <div class="pure-u-1 recipeh_text">{{recipe.name}}</div>
-          <div v-if="igList.length > 0" class="pure-u-1 recipe_text">Zutaten</div>
+          <div v-if="iList.length > 0" class="pure-u-1 recipe_text">Zutaten</div>
           <div v-else class="pure-u-1 recipe_text">Keine Zutaten angegeben</div>
-          <div v-if="igList.length > 0" class="pure-g portions">
+          <div v-if="iList.length > 0" class="pure-g portions">
             <div class="pure-u-1-3"><i class="fa fa-minus-circle pbutton" @click="adjustPortions(-1)"></i></div>
             <div class="pure-u-1-3"><span class="portionnumber">{{this.portions}}</span>Portionen</div>
             <div class="pure-u-1-3"><i class="fa fa-plus-circle pbutton" @click="adjustPortions(1)"></i></div>
           </div>
+          <div v-if="iList.length > 0">
           <ingredient-group
           v-for="item in igList"
           :item = "item"
@@ -22,6 +20,7 @@ d<template>
           :key="item.id"
           >
           </ingredient-group>
+          </div>
           <div v-if="stepList.length > 0" class="pure-u-1 recipe_text2">Zubereitung</div>
           <div v-else class="pure-u-1 recipe_text2">Keine Zubereitungsschritte angegeben</div>
           <step
@@ -87,7 +86,8 @@ export default {
     ...mapGetters([
       'recipes',
       'steps',
-      'ingredientGroups'
+      'ingredientGroups',
+      'ingredients'
     ]),
     stepList() {
       const sortedList = [];
@@ -106,6 +106,12 @@ export default {
     },
     igList() {
       return this.ingredientGroups.filter(e => e.recipe_id === Number(this.id));
+    },
+    iList() {
+      if (this.igList.length > 0) {
+        return this.ingredients.filter(e => e.ingredientgroup_id === this.igList[0].id);
+      }
+      return [];
     },
     pFactor() {
       return this.portions / this.recipe.portions;
