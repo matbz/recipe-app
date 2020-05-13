@@ -1,7 +1,7 @@
 <template>
   <div class="pure-g ig">
     <div class="pure-u-1-2 igr igm">{{quantity}} {{item.measurement}}</div>
-    <div class="pure-u-1-2 igr">{{item.name}}</div>
+    <div class="pure-u-1-2 igr ign">{{item.name}}</div>
   </div>
 </template>
 
