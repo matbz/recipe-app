@@ -609,7 +609,8 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
   width: 100%;
   font-size: 1em;
   line-height: 1.75em;
-  letter-spacing: 0.5px;
+  word-spacing: 0.1em;
+  /* letter-spacing: 0.5px; */
 }
 
 .stepr {
