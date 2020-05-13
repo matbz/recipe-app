@@ -28,8 +28,13 @@ export default {
       this.ingredients.forEach(e => {
         no = Ratio.parse(e.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8);
 
-        replacements[`%${e.identifier}%`] = `(${no.toLocaleString()} ${e.measurement})`;
-        replacementsFull[`§${e.identifier}§`] = `${e.name} (${no.toLocaleString()} ${e.measurement})`;
+        if (e.measurement && e.measurement.length > 0) {
+          replacements[`%${e.identifier}%`] = `(${no.toLocaleString()} ${e.measurement})`;
+          replacementsFull[`§${e.identifier}§`] = `${e.name} (${no.toLocaleString()} ${e.measurement})`;
+        } else {
+          replacements[`%${e.identifier}%`] = `(${no.toLocaleString()})`;
+          replacementsFull[`§${e.identifier}§`] = `${e.name} (${no.toLocaleString()})`;
+        }
       });
 
       const rep = this.item.step.replace(/%\w+%/g, function (all) {

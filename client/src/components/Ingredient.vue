@@ -20,7 +20,11 @@ export default {
 
     ]),
     quantity() {
-      return Ratio.parse(this.item.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8).toLocaleString();
+      if (this.item.quantity > 0) {
+        return Ratio.parse(this.item.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8).toLocaleString();
+      }
+
+      return '';
     }
   },
   methods: {
