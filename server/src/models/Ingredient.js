@@ -31,6 +31,7 @@ class Ingredient {
         i.ingredientgroup_id
       from ingredientgroup as ig
       inner join ingredient as i on i.ingredientgroup_id = ig.id
+      order by i.position
           `;
 
       return await db.manyOrNone(query);
@@ -52,6 +53,7 @@ class Ingredient {
       from ingredientgroup as ig
       inner join ingredient as i on i.ingredientgroup_id = ig.id
       where recipe_id = ${id}
+      order by i.position
           `;
 
       return await db.manyOrNone(query);
