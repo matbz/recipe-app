@@ -21,16 +21,23 @@ export default {
     ]),
     text() {
       const replacements = {};
+      const replacementsFull = {};
+
       let no = 0;
 
       this.ingredients.forEach(e => {
         no = Ratio.parse(e.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8);
 
         replacements[`%${e.identifier}%`] = `(${no.toLocaleString()} ${e.measurement})`;
+        replacementsFull[`§${e.identifier}§`] = `${e.name} (${no.toLocaleString()} ${e.measurement})`;
       });
 
-      return this.item.step.replace(/%\w+%/g, function (all) {
+      const rep = this.item.step.replace(/%\w+%/g, function (all) {
         return replacements[all] || all;
+      });
+
+      return rep.replace(/§\w+§/g, function (all2) {
+        return replacementsFull[all2] || all2;
       });
     }
   },
