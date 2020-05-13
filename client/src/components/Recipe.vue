@@ -9,7 +9,7 @@ d<template>
           <div v-else class="pure-u-1 recipe_text">Keine Zutaten angegeben</div>
           <div v-if="iList.length > 0" class="pure-g portions">
             <div class="pure-u-1-3"><i class="fa fa-minus-circle pbutton" @click="adjustPortions(-1)"></i></div>
-            <div class="pure-u-1-3"><span class="portionnumber">{{this.portions}}</span>Portionen</div>
+            <div class="pure-u-1-3"><span class="portionnumber">{{this.portions}}</span>{{portionString}}</div>
             <div class="pure-u-1-3"><i class="fa fa-plus-circle pbutton" @click="adjustPortions(1)"></i></div>
           </div>
           <div v-if="iList.length > 0">
@@ -89,6 +89,13 @@ export default {
       'ingredientGroups',
       'ingredients'
     ]),
+    portionString() {
+     if (this.portions > 1) {
+       return 'Portionen';
+     }
+
+     return 'Portion';
+    },
     stepList() {
       const sortedList = [];
       const data = this.steps.filter(e => e.recipe_id === Number(this.id));
