@@ -103,13 +103,13 @@ export default {
       'scrollSearch'
     ]),
     content2() {
-      return isDesktop ? 'content2d' : 'content2';
+      return isDesktop() ? 'content2d' : 'content2';
     },
     header() {
-      return isDesktop ? 'headerd' : 'header';
+      return isDesktop() ? 'headerd' : 'header';
     },
     footer() {
-      return isDesktop ? 'footerd' : 'footer';
+      return isDesktop() ? 'footerd' : 'footer';
     }
   },
   methods: {

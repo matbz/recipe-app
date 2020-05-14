@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 function isDesktop() {
   if (navigator.userAgent.match(/Android/i)
     || navigator.userAgent.match(/webOS/i)
@@ -23,7 +24,7 @@ export default {
   name: 'app',
   computed: {
     container() {
-      return isDesktop ? 'containerd' : 'container';
+      return isDesktop() ? 'containerd' : 'container';
     }
   },
   created() {

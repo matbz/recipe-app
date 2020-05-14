@@ -76,13 +76,13 @@ export default {
       'scrollRecipe'
     ]),
     content2() {
-      return isDesktop ? 'content2d' : 'content2';
+      return isDesktop() ? 'content2d' : 'content2';
     },
     header() {
-      return isDesktop ? 'headerd' : 'header';
+      return isDesktop() ? 'headerd' : 'header';
     },
     footer() {
-      return isDesktop ? 'footerd' : 'footer';
+      return isDesktop() ? 'footerd' : 'footer';
     },
     recipeList() {
       return this.recipes.filter(e => e.recipecategory_id === Number(this.id));

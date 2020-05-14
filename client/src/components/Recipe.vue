@@ -104,10 +104,10 @@ export default {
       'ingredients'
     ]),
     contents3() {
-      return isDesktop ? 'contents3d' : 'contents3';
+      return isDesktop() ? 'contents3d' : 'contents3';
     },
     footer() {
-      return isDesktop ? 'footerd' : 'footer';
+      return isDesktop() ? 'footerd' : 'footer';
     },
     portionString() {
      if (this.portions > 1) {
