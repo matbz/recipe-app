@@ -58,7 +58,7 @@ export default {
           }
         });
       });
-      console.log(this.ingredients);
+
       return filtered;
     }
   },
