@@ -33,7 +33,33 @@ export default {
       'ingredients'
     ]),
     iList() {
-      return this.ingredients.filter(e => e.ingredientgroup_id === this.item.id);
+      const xx = [
+        ...this.ingredients
+      ].map(i => ({ ...i }));
+
+      let filtered = xx.filter(e => e.ingredientgroup_id === this.item.id);
+
+      filtered.forEach(fe => {
+        const arr = filtered.filter(ff => ff.name === fe.name && ff.measurement === fe.measurement);
+
+        let sum = 0;
+
+        arr.forEach(a => {
+          sum += Number(a.quantity);
+        });
+
+        fe.quantity = sum;
+
+        arr.forEach((item, index) => {
+          if (index > 0) {
+            filtered = filtered.filter(f2 => {
+              return f2.position !== item.position;
+            });
+          }
+        });
+      });
+      console.log(this.ingredients);
+      return filtered;
     }
   },
   methods: {

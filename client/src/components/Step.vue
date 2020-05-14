@@ -20,12 +20,13 @@ export default {
       'ingredients'
     ]),
     text() {
+      const filtered = this.ingredients.filter(e => e.recipe_id === this.item.recipe_id);
+
       const replacements = {};
       const replacementsFull = {};
-
       let no = 0;
 
-      this.ingredients.forEach(e => {
+      filtered.forEach(e => {
         no = Ratio.parse(e.quantity * this.pfactor).toQuantityOf(2, 3, 4, 8);
 
         if (e.measurement && e.measurement.length > 0) {

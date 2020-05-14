@@ -28,7 +28,8 @@ class Ingredient {
         i.measurement,
         i.identifier,
         i.position,
-        i.ingredientgroup_id
+        i.ingredientgroup_id,
+        ig.recipe_id
       from ingredientgroup as ig
       inner join ingredient as i on i.ingredientgroup_id = ig.id
       order by i.position
