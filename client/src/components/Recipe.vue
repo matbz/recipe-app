@@ -1,6 +1,6 @@
 d<template>
   <div>
-    <div class="contents3">
+    <div :class="contents3">
     <div class="rimg" :style="{ backgroundImage: 'url(' + recipe.imgpath + ')' }"></div>
       <div class="pure-g">
         <div class="recipe" style="width: 100%; height: 100%">
@@ -33,7 +33,7 @@ d<template>
        </div>
       </div>
     </div>
-    <div class="pure-g footer">
+    <div class="pure-g" :class="footer">
       <button class="pure-u-1-3" @click="$router.back()">
         <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
         <div class="footer-text">Zurück</div>
@@ -55,6 +55,20 @@ import store from '@/store';
 import { mapGetters } from 'vuex';
 import IngredientGroup from './IngredientGroup';
 import Step from './Step';
+
+function isDesktop() {
+  if (navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    return false;
+  }
+  return true;
+}
 
 export default {
   components: {
@@ -89,6 +103,12 @@ export default {
       'ingredientGroups',
       'ingredients'
     ]),
+    contents3() {
+      return isDesktop ? 'contents3d' : 'contents3';
+    },
+    footer() {
+      return isDesktop ? 'footerd' : 'footer';
+    },
     portionString() {
      if (this.portions > 1) {
        return 'Portionen';

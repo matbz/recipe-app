@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="pure-g header">
+    <div class="pure-g" :class="header">
       <div class="pure-u-1-1 header-text">KATEGORIEN</div>
     </div>
-    <div class="content2" v-on:scroll.passive="handleScroll($event)">
+    <div :class="content2" v-on:scroll.passive="handleScroll($event)">
       <div class="categories">
         <category
           v-for="item in categories"
@@ -13,7 +13,7 @@
         </category>
       </div>
     </div>
-    <div class="pure-g footer">
+    <div class="pure-g" :class="footer">
       <button class="pure-u-1-3" @click="$router.back()">
         <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
         <div class="footer-text">Zurück</div>
@@ -34,6 +34,20 @@
 import { mapGetters } from 'vuex';
 import Category from './Category';
 
+function isDesktop() {
+  if (navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    return false;
+  }
+  return true;
+}
+
 export default {
   components: {
     Category
@@ -42,7 +56,16 @@ export default {
     ...mapGetters([
       'categories',
       'scrollCategory'
-    ])
+    ]),
+    content2() {
+      return isDesktop ? 'content2d' : 'content2';
+    },
+    header() {
+      return isDesktop ? 'headerd' : 'header';
+    },
+    footer() {
+      return isDesktop ? 'footerd' : 'footer';
+    }
   },
   methods: {
     goTo(routeName) {
