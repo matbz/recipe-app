@@ -868,6 +868,7 @@ input:focus, input.form-control:focus {
   position: absolute;
   overflow-y: scroll;
   color: #1e1d32 ;
+  min-width: 475px;
 }
 
 .headerd {
@@ -877,6 +878,7 @@ input:focus, input.form-control:focus {
   height: 7%;
   width: 20%;
   display: flex;
+  min-width: 475px;
 }
 
 .footerd {
@@ -886,12 +888,14 @@ input:focus, input.form-control:focus {
   top: 92%;
   height: 8%;
   width: 20%;
+  min-width: 475px;
   color: #afafaf  ;
 }
 
 .contents3d {
   width: 20%;
   height: 92%;
+  min-width: 475px;
   background: #fff;
   position: absolute;
   overflow-y: scroll;
