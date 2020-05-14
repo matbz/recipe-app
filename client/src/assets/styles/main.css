@@ -855,7 +855,7 @@ input:focus, input.form-control:focus {
 
 .containerd {
   height: 100%;
-  width: 20%;
+  width: 50%;
   margin: 0 auto;
   padding: 0;
 }
@@ -863,12 +863,11 @@ input:focus, input.form-control:focus {
 .content2d {
   height: 85%;
   top: 7.2%;
-  width: 20%;
+  width: 50%;
   background: #fff;
   position: absolute;
   overflow-y: scroll;
   color: #1e1d32 ;
-  min-width: 475px;
 }
 
 .headerd {
@@ -876,7 +875,7 @@ input:focus, input.form-control:focus {
   border-bottom: 1px solid #e8e8e8;
   position: fixed;
   height: 7%;
-  width: 20%;
+  width: 50%;
   display: flex;
   min-width: 475px;
 }
@@ -887,15 +886,13 @@ input:focus, input.form-control:focus {
   background: #fff;
   top: 92%;
   height: 8%;
-  width: 20%;
-  min-width: 475px;
-  color: #afafaf  ;
+  width: 50%;
+  color: #afafaf;
 }
 
 .contents3d {
-  width: 20%;
+  width: 50%;
   height: 92%;
-  min-width: 475px;
   background: #fff;
   position: absolute;
   overflow-y: scroll;
