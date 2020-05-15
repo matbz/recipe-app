@@ -78,13 +78,13 @@ export default {
   components: {
     RecipeListItem
   },
-  beforeRouteEnter(to, from, next) {
-    if (store.getters.recipesFull.length === 0) {
-      store.dispatch('getRecipesFull').then(res => next());
-    } else {
-      next();
-    }
-  },
+  // beforeRouteEnter(to, from, next) {
+  //   if (store.getters.recipesFull.length === 0) {
+  //     store.dispatch('getRecipesFull').then(res => next());
+  //   } else {
+  //     next();
+  //   }
+  // },
   data() {
     return {
       recipeList: [],
@@ -186,6 +186,8 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('getRecipesFull');
+
     this.msearchString = this.searchString;
     this.search();
     this.$store.dispatch('setScrollRecipe', 0);

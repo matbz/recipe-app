@@ -1,6 +1,6 @@
-d<template>
+<template>
   <div>
-    <div :class="contents3">
+    <div ref="cont" :class="contents3" v-on:scroll.passive="handleScroll($event)">
     <div class="rimg" :style="{ backgroundImage: 'url(' + recipe.imgpath + ')' }"></div>
       <div class="pure-g">
         <div class="recipe" style="width: 100%; height: 100%">
@@ -34,9 +34,13 @@ d<template>
       </div>
     </div>
     <div class="pure-g" :class="footer">
-      <button class="pure-u-1-3" @click="$router.back()">
-        <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
-        <div class="footer-text">Zurück</div>
+      <button v-if="reciper > 0" class="pure-u-1-3" @click="deleteR()">
+        <div><i class="fa fa-check-square-o footer-icon"></i></div>
+        <div class="footer-text">Fertig</div>
+      </button>
+      <button v-else class="pure-u-1-3" @click="saveR()">
+        <div><i class="fa fa-floppy-o footer-icon"></i></div>
+        <div class="footer-text">Kochen</div>
       </button>
       <button :class="{ active: isRecipeActive }" class="pure-u-1-3" @click="goTo('categories')">
         <div><i class="fa fa-clone footer-icon"></i></div>
@@ -93,7 +97,8 @@ export default {
     return {
       recipe: null,
       portions: null,
-      from: null
+      from: null,
+      reciper: null
     };
   },
   computed: {
@@ -162,12 +167,28 @@ export default {
     },
     adjustPortions(no) {
       if (this.portions + no >= 1) this.portions += no;
+    },
+    saveR() {
+      localStorage.setItem('recipe', this.id);
+    },
+    deleteR() {
+      localStorage.setItem('recipe', null);
+    },
+    handleScroll(e) {
+      localStorage.setItem('scroll', e.target.scrollTop);
     }
   },
   created() {
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     this.portions = this.recipe.portions;
+
+    this.reciper = localStorage.getItem('recipe');
+  },
+  mounted() {
+    if (localStorage.getItem('recipe') > 0) {
+      this.$refs.cont.scrollTop = localStorage.getItem('scroll');
+    }
   }
 };
 </script>
