@@ -14,6 +14,7 @@ const SET_SEARCHSTRING = 'SET_SEARCHSTRING';
 const SET_SCROLLCATEGORY = 'SET_SCROLLCATEGORY';
 const SET_SCROLLSEARCH = 'SET_SCROLLSEARCH';
 const SET_SCROLLRECIPE = 'SET_SCROLLRECIPE';
+const SET_WE = 'SET_WE';
 
 const recipe = {
   namespaced: false,
@@ -27,6 +28,7 @@ const recipe = {
     scrollCategory: 0,
     scrollSearch: 0,
     scrollRecipe: 0,
+    we: 0,
     searchString: ''
   },
   mutations: {
@@ -59,6 +61,10 @@ const recipe = {
     },
     SET_SCROLLRECIPE(state, data) {
       state.scrollRecipe = data;
+    },
+    SET_WE(state, data) {
+      localStorage.setItem('we', data);
+      state.we = data;
     }
   },
   actions: {
@@ -143,6 +149,9 @@ const recipe = {
     },
     setScrollRecipe({ commit }, scrollPosition) {
       commit(SET_SCROLLRECIPE, scrollPosition);
+    },
+    setwe({ commit }, data) {
+      commit(SET_WE, data);
     }
   },
   getters: {
@@ -169,6 +178,9 @@ const recipe = {
     },
     scrollCategory(state) {
       return state.scrollCategory;
+    },
+    we(state) {
+      return state.we;
     },
     scrollSearch(state) {
       return state.scrollSearch;

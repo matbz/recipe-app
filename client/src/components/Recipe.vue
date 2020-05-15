@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="pure-g" :class="footer">
-      <button v-if="reciper > 0" class="pure-u-1-3" @click="deleteR()">
+      <button v-if="we > 0" class="pure-u-1-3" @click="deleteR()">
         <div><i class="fa fa-check-square-o footer-icon"></i></div>
         <div class="footer-text">Fertig</div>
       </button>
@@ -106,7 +106,8 @@ export default {
       'recipes',
       'steps',
       'ingredientGroups',
-      'ingredients'
+      'ingredients',
+      'we'
     ]),
     contents3() {
       return isDesktop() ? 'contents3d' : 'contents3';
@@ -170,9 +171,11 @@ export default {
     },
     saveR() {
       localStorage.setItem('recipe', this.id);
+      this.$store.dispatch('setwe', 1);
     },
     deleteR() {
       localStorage.setItem('recipe', null);
+      this.$store.dispatch('setwe', 0);
     },
     handleScroll(e) {
       localStorage.setItem('scroll', e.target.scrollTop);
@@ -182,6 +185,8 @@ export default {
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     this.portions = this.recipe.portions;
+
+    this.$store.dispatch('setwe', localStorage.getItem('we'));
 
     this.reciper = localStorage.getItem('recipe');
   },
