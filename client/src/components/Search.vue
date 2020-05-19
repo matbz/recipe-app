@@ -6,6 +6,16 @@
             <i class="fa fa-search icon"></i>
             <i class="fa fa-times icon2" v-if="this.searchString !== ''" @click="clear"></i>
             <input autocomplete="off"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   spellcheck="false"
+                   class="input-field"
+                   type="text"
+                   placeholder="Lade Daten..."
+                   disabled
+                   v-if="loading">
+            <input autocomplete="off"
+                   v-else
                    @keyup.enter="searchAndClose($event)"
                    @keyup="searchAction()"
                    v-model="msearchString"
@@ -21,7 +31,12 @@
     </div>
     <div :class="content2" v-on:scroll.passive="handleScroll($event)">
       <div class="pure-g add-list">
-        <div style="width: 100%; height: 100%">
+        <div v-if="loading" style="width: 100%; height: 100%">
+          <div class="loadingstext">
+            <p class="loadingdots">Lade Daten</p>
+          </div>
+        </div>
+        <div v-else style="width: 100%; height: 100%">
           <div v-if="recipeList.length > 0" class="pure-u-1 stext">{{this.recipeList.length}} Treffer</div>
           <div v-if="recipeList.length === 0" class="searchText">
             <p>Mindestens 3 Zeichen.</p>
@@ -89,7 +104,8 @@ export default {
     return {
       recipeList: [],
       msearchString: '',
-      foundRecipeIds: []
+      foundRecipeIds: [],
+      loading: false,
     };
   },
   computed: {
@@ -185,8 +201,14 @@ export default {
       this.$store.dispatch('setScrollSearch', e.target.scrollTop);
     }
   },
-  created() {
-    this.$store.dispatch('getRecipesFull');
+  async created() {
+    if (this.recipesFull.length === 0) {
+      this.loading = true;
+      await this.$store.dispatch('getRecipesFull');
+      this.loading = false;
+    } else {
+      this.loading = false;
+    }
 
     this.msearchString = this.searchString;
     this.search();

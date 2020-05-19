@@ -898,3 +898,44 @@ input:focus, input.form-control:focus {
   overflow-y: scroll;
   color: #1e1d32 ;
 }
+
+
+.loadingstext {
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  /* height: 30%; */
+  /* width: 90%; */
+  margin-top: 25%;
+  font-size: .9em;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+}
+
+.loadingdots:after {
+  content: ' . .';
+  animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: white;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 white,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 white,
+      .5em 0 0 white;}}
