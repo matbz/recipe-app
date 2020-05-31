@@ -168,6 +168,7 @@ export default {
     },
     adjustPortions(no) {
       if (this.portions + no >= 1) this.portions += no;
+      localStorage.setItem('portions', this.portions);
     },
     saveR() {
       localStorage.setItem('recipe', this.id);
@@ -184,7 +185,12 @@ export default {
   created() {
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
-    this.portions = this.recipe.portions;
+    if (localStorage.getItem('recipe') > 0) {
+      this.portions = localStorage.getItem('portions');
+    } else {
+      this.portions = this.recipe.portions;
+      localStorage.setItem('portions', this.portions);
+    }
 
     this.$store.dispatch('setwe', localStorage.getItem('we'));
 
