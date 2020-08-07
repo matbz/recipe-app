@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="pure-g" :class="footer">
-      <button class="pure-u-1-3" @click="$router.back()">
+      <button class="pure-u-1-3" @click="gback()">
         <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
         <div class="footer-text">Zurück</div>
       </button>
@@ -89,8 +89,17 @@ export default {
     }
   },
   methods: {
+    gback() {
+      this.deleteR();
+      this.$router.back();
+    },
      goTo(routeName) {
+      this.deleteR();
       this.$router.push({ name: routeName });
+    },
+    deleteR() {
+      localStorage.setItem('recipe', null);
+      this.$store.dispatch('setwe', 0);
     },
     handleScroll(e) {
       this.$store.dispatch('setScrollRecipe', e.target.scrollTop);

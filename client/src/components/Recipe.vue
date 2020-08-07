@@ -34,13 +34,9 @@
       </div>
     </div>
     <div class="pure-g" :class="footer">
-      <button v-if="we > 0" class="pure-u-1-3" @click="deleteR()">
-        <div><i class="fa fa-check-square-o footer-icon"></i></div>
-        <div class="footer-text">Fertig</div>
-      </button>
-      <button v-else class="pure-u-1-3" @click="saveR()">
-        <div><i class="fa fa-floppy-o footer-icon"></i></div>
-        <div class="footer-text">Kochen</div>
+      <button class="pure-u-1-3" @click="gback()">
+        <div><i class="fa fa-arrow-left footer-icon thin"></i></div>
+        <div class="footer-text">Zurück</div>
       </button>
       <button :class="{ active: isRecipeActive }" class="pure-u-1-3" @click="goTo('categories')">
         <div><i class="fa fa-clone footer-icon"></i></div>
@@ -163,7 +159,12 @@ export default {
     },
   },
   methods: {
+    gback() {
+      this.deleteR();
+      this.$router.back();
+    },
     goTo(routeName) {
+      this.deleteR();
       this.$router.push({ name: routeName });
     },
     adjustPortions(no) {
@@ -183,6 +184,7 @@ export default {
     }
   },
   created() {
+    this.saveR();
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     if (localStorage.getItem('recipe') > 0) {
