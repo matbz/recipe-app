@@ -77,6 +77,8 @@ export default {
       this.$router.push({ name: routeName });
     },
     deleteR() {
+      this.$store.dispatch('setScrollSearch', 0);
+      this.$store.dispatch('setScrollRecipe', 0);
       localStorage.setItem('recipe', null);
       this.$store.dispatch('setwe', 0);
     },
