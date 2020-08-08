@@ -188,6 +188,7 @@ export default {
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     if (localStorage.getItem('recipe') > 0) {
+      this.$store.dispatch('getRecipesFull');  
       this.portions = Number(localStorage.getItem('portions'));
     } else {
       this.portions = this.recipe.portions;

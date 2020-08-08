@@ -220,8 +220,8 @@ export default {
   async created() {
     if (this.recipesFull.length === 0) {
       this.loading = true;
-      await this.$store.dispatch('getRecipesFull');
-      this.loading = false;
+      // await this.$store.dispatch('getRecipesFull');
+      // this.loading = false;
     } else {
       this.loading = false;
     }
