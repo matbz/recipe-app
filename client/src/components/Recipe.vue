@@ -185,7 +185,6 @@ export default {
     }
   },
   created() {
-    this.saveR();
     this.recipe = this.recipes.filter(e => e.id === Number(this.id))[0];
 
     if (localStorage.getItem('recipe') > 0) {
@@ -194,15 +193,16 @@ export default {
       this.portions = this.recipe.portions;
       localStorage.setItem('portions', this.portions);
     }
-
     this.$store.dispatch('setwe', localStorage.getItem('we'));
 
     this.reciper = localStorage.getItem('recipe');
+
+    this.saveR();
   },
   mounted() {
     if (localStorage.getItem('recipe') > 0) {
       this.$refs.cont.scrollTop = localStorage.getItem('scroll');
-    }
+    }  
   }
 };
 </script>

@@ -64,8 +64,14 @@ export default {
   ],
   beforeRouteEnter(to, from, next) {
     if (store.getters.recipes.length === 0) {
+      localStorage.setItem('scroll', 0);
+      localStorage.setItem('recipe', null);
+      store.dispatch('setwe', 0);    
       store.dispatch('load').then(res => next());
     } else {
+      localStorage.setItem('scroll', 0);
+      localStorage.setItem('recipe', null);
+      store.dispatch('setwe', 0);      
       next();
     }
   },

@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import { mapGetters } from 'vuex';
 import Category from './Category';
 
@@ -67,6 +68,12 @@ export default {
       return isDesktop() ? 'footerd' : 'footer';
     }
   },
+  beforeRouteEnter(to, from, next) {
+    localStorage.setItem('scroll', 0);
+    localStorage.setItem('recipe', null);
+    store.dispatch('setwe', 0);    
+    next();
+  }, 
   methods: {
     gback() {
       this.deleteR();
