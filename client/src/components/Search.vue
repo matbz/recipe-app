@@ -122,7 +122,7 @@ export default {
       return isDesktop() ? 'content2d' : 'content2';
     },
     header() {
-      return isDesktop() ? 'headerd' : 'header';
+      return isDesktop() ? 'headerd' : 'header header2';
     },
     footer() {
       return isDesktop() ? 'footerd' : 'footer';
@@ -131,9 +131,9 @@ export default {
   beforeRouteEnter(to, from, next) {
     localStorage.setItem('scroll', 0);
     localStorage.setItem('recipe', null);
-    store.dispatch('setwe', 0);  
+    store.dispatch('setwe', 0);
     next();
-  },   
+  },
   methods: {
     gback() {
       this.deleteR();

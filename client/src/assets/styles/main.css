@@ -632,6 +632,10 @@ hr { flex-basis: 100%; height: 0; margin: 0; border: 0; }
   padding-top: .8em;
 }
 
+.header2 {
+  padding-top: 0em!important;
+}
+
 .header-text {
   color: #fecab5;
   text-align: center;
