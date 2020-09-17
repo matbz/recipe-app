@@ -100,7 +100,7 @@ export default {
 
     const recid = localStorage.getItem('recipe');
     if (recid > 0) {
-      // window.location = `https://rezepte.matbz.com/recipe/${recid}`;
+      window.location = `https://rezepte.matbz.com/recipe/${recid}`;
     }
 
     this.$store.dispatch('setScrollSearch', 0);
