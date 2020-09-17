@@ -96,7 +96,7 @@ export default {
     container.scrollTop = this.scrollCategory;
   },
   created() {
-    this.$store.dispatch('getRecipesFull');    
+    this.$store.dispatch('getRecipesFull');
 
     const recid = localStorage.getItem('recipe');
     if (recid > 0) {
