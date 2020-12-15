@@ -6,7 +6,7 @@
     <div :class="content2" v-on:scroll.passive="handleScroll($event)">
       <div class="categories">
         <category
-          v-for="item in categories"
+          v-for="item in categories2"
           :item = "item"
           :key="item.id"
           >
@@ -58,6 +58,12 @@ export default {
       'categories',
       'scrollCategory'
     ]),
+    categories2() {
+      const xy = [...this.categories];
+      return xy.sort(function (a, b) {
+        return a.position - b.position;
+      });
+    },
     content2() {
       return isDesktop() ? 'content2d' : 'content2';
     },
