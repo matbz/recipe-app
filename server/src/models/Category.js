@@ -18,7 +18,7 @@ class Category {
 
   async all() {
     try {
-      const query = SQL`select * from recipecategory order by position`;
+      const query = SQL`select * from recipecategory order by id`;
 
       return await db.manyOrNone(query);
     } catch (error) {
